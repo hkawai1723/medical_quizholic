@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ section | replace('_', ' ') | capitalize}}</h1>
+<h2>Let's Get Started!</h2>
+<a href="{{ url_for('question.section_quiz', section=section) }}" class="btn btn-danger btn-lg">Start Quiz</a>
+{% endblock %}

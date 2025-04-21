@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}{% if name %}{{ name }}-{% endif %}Add User{% endblock %}
+
+{% block content %}
+<h1>Add User</h1>
+<form method="POST" action="{{ url_for('admin.add_user') }}" novalidate>
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control") }}
+        {% for error in form.username.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.email.label(class="form-label") }}
+        {{ form.email(class="form-control") }}
+        {% for error in form.email.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.password.label(class="form-label") }}
+        {{ form.password(class="form-control") }}
+        {% for error in form.password.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.password_confirm.label(class="form-label") }}
+        {{ form.password_confirm(class="form-control") }}
+        {% for error in form.password_confirm.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+<table class="table table-bordered table-hover mt-5">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Creation date</th>
+            <th scope="col">Last update</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %} 
+        <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td><a href="{{ url_for('admin.update_user', id=user.id) }}">{{user.name}}</a></td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.created_at}}</td>
+            <td>{{user.updated_at}}</td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% endblock %}

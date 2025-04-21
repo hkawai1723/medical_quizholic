@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ course | replace('_', ' ') | capitalize }}</h1>
+    <div>
+    {% for chapter in chapter_list %}
+        <a href="{{ url_for('page_transition.unit_list', chapter=chapter ) }}" class="btn btn-primary btn-lg mt-2">{{ chapter | replace('_', ' ') | capitalize }}</a><br>
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ chapter | replace('_', ' ') | capitalize }}</h1>
+    <div>
+    {% for unit in unit_list %}
+        <a href="{{ url_for('page_transition.section_list', unit=unit ) }}" class="btn btn-secondary btn-lg mt-2">{{ unit | replace('_', ' ') | capitalize }}</a><br>
+    {% endfor %}
+    </div>
+{% endblock %}

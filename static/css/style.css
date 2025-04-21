@@ -1,0 +1,21 @@
+h1 {
+    color: #198754;/* Bootstrap v5のtext-successの色 */
+}
+
+input[type="radio"]:checked + label.question_choice {
+    color: #198754;/* Bootstrap v5のtext-successの色 */
+    background-color: white;
+    border-color: #198754;
+    border-width: 3px;
+}
+
+input[type="radio"]:active {
+    background-color: white;
+}
+
+input[type="radio"]:active + label.question_choice {
+    color: #198754;/* Bootstrap v5のtext-successの色 */
+    background-color: white;
+    border-color: #198754;
+    border-width: 3px;
+}

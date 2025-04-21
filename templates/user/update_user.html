@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{% if name %}{{ name }}-{% endif %}Update User{% endblock %}
+
+{% block content %}
+<h1>Update User</h1>
+{% if user.id == current_user.id %}
+
+<form method="POST" action="{{ url_for('user.update_user', id=user.id) }}" novalidate>
+    {{ form.csrf_token }}
+    <div class="mb-3">
+        {{ form.username.label(class="form-label") }}
+        {{ form.username(class="form-control", value=user.name) }}
+        {% for error in form.username.errors %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    {{ form.submit(class="btn btn-primary ms-2") }}
+    <a href="{{ url_for('user.delete_user', id=user.id) }}" class="btn btn-danger">Delete</a>
+</form>
+{% else %}
+    <div class="alert alert-danger">You can't update other users.</div>
+{% endif %}
+
+{% endblock %}

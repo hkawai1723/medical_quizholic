@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+{% if current_user.is_authenticated %}
+    <p>Hi, {{ current_user.name }}</p>
+{% else %}
+    <p>Hi, Guest user</p>
+{% endif %}
+
+<a href="{{ url_for('question.section_quiz', section=section) }}" class="btn btn-danger btn-lg mt-3 mb-3">Quick start!<br>{{ section | replace('_', ' ') | capitalize }}</a><br>
+
+{% endblock %}

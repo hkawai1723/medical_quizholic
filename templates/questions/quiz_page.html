@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ session.title | replace('_', ' ') | capitalize  }}</h1>
+<p>{{ session.amount }} questions</p>
+
+<form id="question-form" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div id="question" class="question" data-index="{{ question.id }}" data-correct-answer="{{ question.correct_answer }}" data-explanation="{{ question.explanation }}">
+        <span>{{ session.question_index + 1 }} of {{ session.amount }}</span>
+        <p>{{ question.content }}</p>
+        <ul class="card">
+            {% for choice, text in question.choices.items() %}
+            
+                <input id="choice_{{ loop.index }}" type=radio name='answer' value="{{ choice }}" style="display: none;">
+                <label for="choice_{{ loop.index }}" class="btn btn-outline-dark btn-lg mt-2 question_choice">{{ loop.index }}: {{ text }}</label><br>
+            {% endfor %}
+        </ul>
+        <button id="answer-button" type="button" class="btn btn-danger btn-lg">Answer</button>
+        
+    </div>
+
+    <button id="next-button" type="submit" class="btn btn-success btn-lg d-none">Next</button>
+</form>
+
+<a href="{{ url_for('question.result_page', accuracy=session['accuracy']) }}" id="finish-quiz" type="submit" class="btn btn-secondary mt-5">Finish</a>
+<script>
+
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/quiz_page.js') }}"></script>
+
+{% endblock %}

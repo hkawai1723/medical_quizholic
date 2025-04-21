@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ unit | replace('_', ' ') | capitalize }}</h1>
+    <div>
+    {% for section in section_list %}
+        <a href="{{ url_for('page_transition.section_quiz_entrance', section=section) }}" class="btn btn-info btn-lg mt-2">{{ section | replace('_', ' ') | capitalize }}</a><br>
+    {% endfor %}
+    </div>
+{% endblock %}

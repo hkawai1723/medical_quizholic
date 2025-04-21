@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="question card">
+        <p>{{ question.content}}</p>
+        <ul>
+            {% for choice, text in question.choices.items() %}
+            <li>{{ choice }} {{text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

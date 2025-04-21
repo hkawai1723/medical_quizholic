@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="card mt-3">
+    <div class="card-header">
+        <h1>Profile of {{ current_user.name }}.</h1>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Welcome to Your Profile!</h5>
+        <p class="card-text">Username: {{current_user.name }}</p>
+        <p class="card-text">Email: {{current_user.email }}</p>
+        <p class="card-text">Creation data: {{current_user.created_at }}</p>
+        <p class="card-text">Last update: {{current_user.updated_at }}</p>
+        {% if current_user.auth_provider == 'local' %}
+            <a href="{{ url_for('auth.change_password')}}" class="d-block">Password変更</a>
+        {% endif %}
+        <a href="{{url_for('user.update_user', id=current_user.id)}}" class="btn btn-primary">Edit</a>
+    </div>
+
+</div>
+
+{% endblock %}

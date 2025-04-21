@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Welcome!{% endblock %}
+
+{% block content %}
+<h1>Welcome to Medical quiz app!</h1>
+
+<a href="{{ url_for('question.section_quiz', section=section) }}" class="btn btn-danger btn-lg mt-3 mb-3">Quick start!<br>{{ section | replace('_', ' ') | capitalize }}</a><br>
+
+<a href="{{ url_for('auth.login') }}" class="btn btn-primary">Go to Login Page.</a>
+<a href="{{ url_for('auth.signup') }}" class="mt-2 d-block">or Sign up here.</a>
+
+
+{% endblock %}
