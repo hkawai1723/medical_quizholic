@@ -15,6 +15,7 @@ https://medical-quizholic-777033964912.asia-northeast1.run.app
 
 ## DB schema
 ### Users table
+```
 `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -27,9 +28,11 @@ https://medical-quizholic-777033964912.asia-northeast1.run.app
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) 
+```
 E-mailで一意性を担保。
 
 ### Questions table
+```
 CREATE TABLE `questions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `content` text,
@@ -44,8 +47,10 @@ CREATE TABLE `questions` (
   KEY `ix_questions_section_id` (`section_id`),
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`section_id`) REFERENCES `sections` (`section_id`)
 )
+```
 
 ### Sections table
+```
 CREATE TABLE `sections` (
   `section_id` int NOT NULL AUTO_INCREMENT,
   `section_name` varchar(100) NOT NULL,
@@ -55,6 +60,7 @@ CREATE TABLE `sections` (
   PRIMARY KEY (`section_id`),
   UNIQUE KEY `section_name` (`section_name`)
 )
+```
 Category > Chapter > Unit > Section
 
 例)
